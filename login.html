@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- tailwind css and daisy ui -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- font awesome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <main class="flex justify-center items-center h-[100vh]">
+      <fieldset class="fieldset bg-white shadow-2xl rounded-box w-[450px] p-4">
+        <div class="flex justify-center items-center flex-col space-y-2">
+          <img
+            src="./assets/github-logo.png"
+            alt=""
+            class="text-center object-fill object-center h-full"
+          />
+          <p class="text-[24px] font-bold">GitHub Issues Tracker</p>
+          <span class="text-[1rem] opacity-[80%]"
+            >Sign in to manage your issues</span
+          >
+        </div>
+
+        <label class="label font-medium text-[1rem] text-black">Username</label>
+        <input
+          type="text"
+          class="input w-full rounded-[8px]"
+          placeholder="Enter Username"
+        />
+        <p class="text-[#4A00FF] text-[14px]">Default:admin</p>
+
+        <label class="label mt-[1rem] font-medium text-[1rem] text-black"
+          >Password</label
+        >
+        <input
+          type="password"
+          class="input w-full rounded-[8px]"
+          placeholder="Password"
+        />
+        <p class="text-[#4A00FF] text-[14px]">Default:admin1234</p>
+        <button class="btn btn-active btn-primary mt-5 rounded-[8px]">Sign In</button>
+
+        <div class="bg-[#F8FAFC] text-center mt-4 p-4">
+          <p class="text-[1rem]"> <span class="font-bold">Username:</span>admin</p>
+          <p class="text-[1rem]"> <span class="font-bold">Password:</span>admin123</p>
+        </div>
+      </fieldset>
+    </main>
+
+
+
+
+    <script src="./script/login.js"></script>
+  </body>
+</html>
