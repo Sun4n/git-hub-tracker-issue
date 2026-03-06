@@ -8,6 +8,9 @@ document.getElementById("signIn").addEventListener("click", ()=>{
         window.location.assign("home.html")
         
     }
+    else{
+        alert("wrong password")
+    }
     
     
 })

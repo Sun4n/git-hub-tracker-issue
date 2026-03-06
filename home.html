@@ -1,11 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    hello
-</body>
+    <!-- tailwind css and daisy ui -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- font awesome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+   <header class=" w-full">
+     <div class="ml-4 navbar bg-base-100 shadow-sm justify-between items-center">
+      <div class="flex">
+        <img src="./assets/github-logo.png" alt="" class="w-[15%]" />
+        <a class="btn btn-ghost text-xl">GitHub Issues Tracker</a>
+      </div>
+      <div class="flex gap-2">
+        
+        <input
+          type="text"
+          placeholder="Search"
+          class="input input-bordered w-full"
+        />
+
+        <div class="w-full mr-7">
+          <button class="btn btn-primary w-full flex justify-center items-center"><span class="text-2xl">+</span>New Issue</button>
+        </div>
+      </div>
+    </div>
+   </header>
+
+    <script src="./script/script.js"></script>
+  </body>
 </html>
