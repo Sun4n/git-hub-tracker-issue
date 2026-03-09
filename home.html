@@ -30,6 +30,7 @@
       <div class="flex gap-2">
         
         <input
+          id="input-search"
           type="text"
           placeholder="Search"
           class="input input-bordered w-full"
@@ -41,12 +42,12 @@
       </div>
     </div>
    </header>
-   <main class="max-w-[1100px] mx-auto mt-4">
+   <main class="max-w-[1400px] mx-auto mt-4">
     <section>
       <div class="buttons bg-white shadow-md rounded-[10px] py-5 px-5 flex gap-2">
         <button
           id="allBtn" onclick="filterBtn(id)"
-          class="bg-primary py-[8px] px-[12px] text-[#64748B] text-white rounded-md w-[80px] font-medium shadow-md"
+          class="bg-primary py-[8px] px-[12px] text-[#64748B] text-white rounded-md w-[80px] font-medium border border-[#E4E4E7]"
         >
           All
         </button>
@@ -82,17 +83,17 @@
       </div>
     </section>
 
-
-
-
-
-    <section id="cardContainer" class="bg-white shadow-2xl mt-4 grid grid-cols-1 md:grid-cols-3 lg::grid-cols-4 gap-4 p-4">
- 
-
+    <section id="cardContainer" class="bg-white shadow-2xl mt-4 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
     </section>
     <div id="loadingSpinner" class="h-[60vh] flex hidden justify-center items-center">
       <span class="loading loading-spinner loading-xl"></span>
     </div>
+    <!-- Modal details -->
+     <!-- Open the modal using ID.showModal() method -->
+
+      <dialog id="issueDetail" class="modal">
+        
+      </dialog>
    </main>
     <script src="./script/script.js"></script>
   </body>
