@@ -5,6 +5,8 @@ const closeBtn = document.getElementById("closeBtn");
 const loadingSpinner = document.getElementById("loadingSpinner");
 const issueCount = document.getElementById("issueCount");
 const issueDetail = document.getElementById("issueDetail")
+const inputSearch = document.getElementById("input-search")
+const searchBtn = document.getElementById("searchBtn")
 async function showLoading() {
   loadingSpinner.classList.remove("hidden");
   cardContainer.innerHTML = "";
@@ -24,21 +26,21 @@ async function filterBtn(id, data) {
     allBtn.classList.add("bg-primary", "text-white");
     openBtn.classList.remove("bg-primary", "text-white");
     closeBtn.classList.remove("bg-primary", "text-white");
-    allDisplay();
+    await allDisplay();
     hideLoading();
   } else if (id == "openBtn") {
     showLoading();
     allBtn.classList.remove("bg-primary", "text-white");
     openBtn.classList.add("bg-primary", "text-white");
     closeBtn.classList.remove("bg-primary", "text-white");
-    openDisplay();
+    await openDisplay();
     hideLoading();
   } else if (id == "closeBtn") {
     showLoading();
     allBtn.classList.remove("bg-primary", "text-white");
     openBtn.classList.remove("bg-primary", "text-white");
     closeBtn.classList.add("bg-primary", "text-white");
-    closedDisplay();
+    await closedDisplay();
     hideLoading();
   }
 }
@@ -125,11 +127,13 @@ async function closedDisplay() {
 }
 
 async function loadCard() {
+  showLoading()
   const res = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await res.json();
   displayCards(data.data);
+  hideLoading()
 }
 function displayCards(datas) {
   datas.forEach((data) => {
@@ -160,11 +164,11 @@ function displayCards(datas) {
 loadCard();
 
 async function openIssueModal(id) {
-  console.log(id);
+  // console.log(id);
   const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
   const data= await res.json();
   const dataDetail = data.data;
-  console.log(dataDetail);
+  // console.log(dataDetail);
   const modalBox = document.createElement("div")
   modalBox.className="modal-box space-y-5"
   modalBox.innerHTML=`
@@ -204,3 +208,71 @@ async function openIssueModal(id) {
   issueDetail.showModal()
   
 }
+
+function showSearch(value) {
+  cardContainer.innerHTML=""
+   const card = document.createElement("div");
+    card.className = `card w-[300px] bg-base-100 card-sm shadow-sm border-t-3  ${value.status == "open"? "border-green-600" : "border-primary"}`;
+    card.innerHTML = `
+        <div class="card-body" onclick="openIssueModal(${value.id})">
+        <div class="flex justify-between items-center">
+          <img src="./assets/Open-Status.png" alt="">
+          <div class="badge badge-soft badge-error">${value.priority.toUpperCase()}</div>
+        </div>
+        <h2 class="card-title">${value.title}</h2>
+        <p class="line-clamp-2 text-justify">${value.description}</p>
+        <div class="mt-2">
+          <div class="badge badge-soft badge-error font-medium">${value.labels[0]}</div>
+          <div class="badge badge-soft badge-warning font-medium uppercase">${value.labels[1]}</div>
+        </div>
+        <p class="text-[#64748B]">#1 by john_doe</p>
+        <p class="text-[#64748B]">1/15/2024</p>
+     </div>
+        `;
+    cardContainer.appendChild(card);
+    const count = cardContainer.children.length;
+    issueCountShow(count);
+
+}
+
+
+
+searchBtn.addEventListener("click", async()=>{
+  console.log(inputSearch.value );
+  const searchValue = inputSearch.value.toLowerCase()
+  const resp = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${inputSearch.value}`)
+
+  const value = await resp.json();
+  const allValue = value.data
+  cardContainer.innerHTML=""
+  for(let data of allValue){
+    console.log(data);
+    
+   const card = document.createElement("div");
+    card.className = `card w-[300px] bg-base-100 card-sm shadow-sm border-t-3  ${data.status == "open"? "border-green-600" : "border-primary"}`;
+    card.innerHTML = `
+        <div class="card-body" onclick="openIssueModal(${data.id})">
+        <div class="flex justify-between items-center">
+          <img src="./assets/Open-Status.png" alt="">
+          <div class="badge badge-soft badge-error">${data.priority}</div>
+        </div>
+        <h2 class="card-title">${data.title}</h2>
+        <p class="line-clamp-2 text-justify">${data.description}</p>
+        <div class="mt-2">
+          <div class="badge badge-soft badge-error font-medium">${data.labels[0]}</div>
+          <div class="badge badge-soft badge-warning font-medium uppercase">${data.labels[1]}</div>
+        </div>
+        <p class="text-[#64748B]">#1 by john_doe</p>
+        <p class="text-[#64748B]">1/15/2024</p>
+     </div>
+        `;
+    cardContainer.appendChild(card);
+    const count = cardContainer.children.length;
+    issueCountShow(count)
+  }
+ 
+  
+
+  
+  
+})
